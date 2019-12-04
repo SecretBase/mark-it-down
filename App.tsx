@@ -1,8 +1,9 @@
 import * as React from "react"
-import Editor from "./components/Editor"
-import Preview from "./components/Preview"
 
-const { useState, useCallback } = React
+const Editor = React.lazy(() => import("./components/Editor"))
+const Preview = React.lazy(() => import("./components/Preview"))
+
+const { useState, useCallback, Suspense } = React
 
 const App: React.FC = () => {
   const [markdown, setMarkdown] = useState("")
@@ -15,8 +16,10 @@ const App: React.FC = () => {
 
   return (
     <>
-      <Editor onChange={onChange} value={markdown} />
-      <Preview markdown={markdown} />
+      <Suspense fallback={"Loading..."}>
+        <Editor onChange={onChange} value={markdown} />
+        <Preview markdown={markdown} />
+      </Suspense>
     </>
   )
 }
