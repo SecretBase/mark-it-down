@@ -1,6 +1,6 @@
 {
   "parser": "@typescript-eslint/parser",
-  "plugins": ["@typescript-eslint", "import", "react"],
+  "plugins": ["@typescript-eslint", "import", "react", "react-hooks"],
   "extends": [
     "react-app",
     "plugin:@typescript-eslint/recommended",
