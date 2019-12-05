@@ -1,11 +1,12 @@
-import * as React from "react"
+import { h, FunctionComponent } from "preact"
+import { memo } from "preact/compat"
 
 interface Props {
-  onChange: React.ChangeEventHandler<HTMLTextAreaElement>
+  onChange: (e) => void
   value: string
 }
 
-const Editor: React.FC<Props> = ({ onChange, value }) => {
+const Editor: FunctionComponent<Props> = ({ onChange, value }) => {
   return (
     <textarea
       onChange={onChange}
@@ -16,4 +17,4 @@ const Editor: React.FC<Props> = ({ onChange, value }) => {
   )
 }
 
-export default React.memo(Editor)
+export default memo(Editor)

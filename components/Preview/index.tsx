@@ -1,7 +1,6 @@
-import * as React from "react"
+import { h, FunctionComponent } from "preact"
+import { useState, useEffect, memo } from "preact/compat"
 import { wrap } from "comlink"
-
-const { useState, useEffect } = React
 
 const worker = new Worker("./markdownParser.ts")
 const fns = wrap<{ parse: parseFn }>(worker)
@@ -26,9 +25,9 @@ const useMarkdown = (markdown: string): string => {
   return html
 }
 
-const Preview: React.FC<Props> = ({ markdown }) => {
+const Preview: FunctionComponent<Props> = ({ markdown }) => {
   const html = useMarkdown(markdown)
   return <div dangerouslySetInnerHTML={{ __html: html }} />
 }
 
-export default React.memo(Preview)
+export default memo(Preview)

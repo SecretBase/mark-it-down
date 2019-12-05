@@ -1,8 +1,11 @@
-import * as React from "react"
-import { render } from "react-dom"
+import { render, h } from "preact"
 
 import App from "./App"
 
-render(<App />, document.getElementById("app"))
+const app = document.getElementById("app")
+
+if (app) {
+  render(<App />, app)
+}
 
 navigator.serviceWorker.register("/service_worker.js")

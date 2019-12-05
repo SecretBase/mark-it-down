@@ -2,11 +2,12 @@
   "compilerOptions": {
     "alwaysStrict": true,
     "module": "ESNext",
-    "noImplicitAny": true,
+    "noImplicitAny": false,
     "sourceMap": true,
     "strict": true,
     "target": "ES2016",
     "jsx": "react",
+    "jsxFactory": "h",
     "moduleResolution": "node"
   }
 }
