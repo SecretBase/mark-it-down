@@ -8,6 +8,7 @@
     "target": "ES2016",
     "jsx": "react",
     "jsxFactory": "h",
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true
   }
 }

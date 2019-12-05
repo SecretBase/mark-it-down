@@ -1,14 +1,11 @@
-import { Parser, HtmlRenderer } from "commonmark"
+import MarkdownIt from "markdown-it"
 import { expose } from "comlink"
 
-const reader = new Parser()
-const writer = new HtmlRenderer({ safe: true })
+const md = new MarkdownIt("commonmark")
 
 const fns = {
   parse: (markdown: string): string => {
-    const ast = reader.parse(markdown)
-    const html = writer.render(ast)
-    return html
+    return md.render(markdown)
   }
 }
 
