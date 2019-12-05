@@ -1,20 +1,27 @@
-import { Suspense, lazy, useState, useCallback } from "preact/compat"
 import { FunctionComponent, h } from "preact"
+import { BrowserRouter as Router, Route } from "react-router-dom"
+import { Container, Row, Col } from "react-bootstrap"
 
-const Editor = lazy(() => import("./components/Editor"))
-const Preview = lazy(() => import("./components/Preview"))
+import WorkSpace from "./components/WorkSpace"
+import FileTree from "./components/FileTree"
+import { MarkdownDBProvider } from "./context/markdownDB"
 
 const App: FunctionComponent = () => {
-  const [markdown, setMarkdown] = useState("")
-  const onChange = useCallback(e => {
-    setMarkdown(e.target.value)
-  }, [])
-
   return (
-    <Suspense fallback={"Loading..."}>
-      <Editor onChange={onChange} value={markdown} />
-      <Preview markdown={markdown} />
-    </Suspense>
+    <MarkdownDBProvider>
+      <Router>
+        <Container fluid>
+          <Row>
+            <Col as="aside">
+              <FileTree />
+            </Col>
+            <Col as="main">
+              <Route path="/edit" exact render={() => <WorkSpace />} />
+            </Col>
+          </Row>
+        </Container>
+      </Router>
+    </MarkdownDBProvider>
   )
 }
 
