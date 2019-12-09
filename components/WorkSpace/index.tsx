@@ -7,7 +7,7 @@ import {
   useContext,
   useEffect
 } from "preact/compat"
-import { Row, Col } from "react-bootstrap"
+import { Row, Col, Spinner } from "react-bootstrap"
 
 import { MarkdownDBContext } from "../../context/markdownDB"
 
@@ -51,21 +51,35 @@ const WorkSpace: FunctionComponent<Props> = ({ fileId }) => {
   }, [fileId, read])
 
   return (
-    <Suspense fallback={"Loading..."}>
-      <Row as="div" fluid>
-        <Col>
+    <Row as="div" fluid>
+      <Col>
+        <Suspense
+          fallback={
+            <Spinner animation="border" role="status">
+              <span className="sr-only">Loading...</span>
+            </Spinner>
+          }
+        >
           <Editor
             onContentChange={onMarkdownChange}
             content={content.markdown}
             onTitleChange={onTitleChange}
             title={content.title}
           />
-        </Col>
-        <Col>
+        </Suspense>
+      </Col>
+      <Col>
+        <Suspense
+          fallback={
+            <Spinner animation="border" role="status">
+              <span className="sr-only">Loading...</span>
+            </Spinner>
+          }
+        >
           <Preview markdown={content.markdown} />
-        </Col>
-      </Row>
-    </Suspense>
+        </Suspense>
+      </Col>
+    </Row>
   )
 }
 
