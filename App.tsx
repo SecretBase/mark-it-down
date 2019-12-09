@@ -12,11 +12,15 @@ const App: FunctionComponent = () => {
       <Router>
         <Container fluid>
           <Row>
-            <Col as="aside">
+            <Col as="aside" md={3} width={300}>
               <FileTree />
             </Col>
             <Col as="main">
-              <Route path="/edit" exact render={() => <WorkSpace />} />
+              <Route
+                path="/edit/:id"
+                exact
+                render={props => <WorkSpace fileId={props.match.params.id} />}
+              />
             </Col>
           </Row>
         </Container>

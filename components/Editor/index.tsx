@@ -1,19 +1,36 @@
-import { h, FunctionComponent } from "preact"
+import { h, FunctionComponent, Fragment } from "preact"
 import { memo } from "preact/compat"
+import { Form } from "react-bootstrap"
 
 interface Props {
-  onChange: (e) => void
-  value: string
+  onContentChange: (e) => void
+  onTitleChange: (e) => void
+  content: string
+  title: string
 }
 
-const Editor: FunctionComponent<Props> = ({ onChange, value }) => {
+const Editor: FunctionComponent<Props> = ({
+  onContentChange,
+  content,
+  onTitleChange,
+  title
+}) => {
   return (
-    <textarea
-      onChange={onChange}
-      value={value}
-      rows={30}
-      style={{ width: "100%", resize: "none" }}
-    ></textarea>
+    <Fragment>
+      <Form.Group>
+        <Form.Label>Title</Form.Label>
+        <Form.Control type="text" onChange={onTitleChange} value={title} />
+      </Form.Group>
+      <Form.Group>
+        <Form.Label>Content</Form.Label>
+        <Form.Control
+          as="textarea"
+          onChange={onContentChange}
+          value={content}
+          rows={30}
+        />
+      </Form.Group>
+    </Fragment>
   )
 }
 

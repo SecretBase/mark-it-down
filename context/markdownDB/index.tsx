@@ -12,11 +12,11 @@ export const MarkdownDBProvider: FunctionComponent = props => {
   }, [])
 
   const remove = useCallback(async (id: string) => {
-    await db.markdowns.delete(id)
+    await db.markdowns.delete(parseInt(id, 10))
   }, [])
 
-  const read = useCallback(async (id: string) => {
-    return db.markdowns.get(id)
+  const read = useCallback((id: string) => {
+    return db.markdowns.get(parseInt(id, 10))
   }, [])
 
   const list = useCallback(async () => {

@@ -8,7 +8,7 @@ export interface Markdown {
 }
 
 class MarkdownDatabase extends Dexie {
-  public markdowns: Dexie.Table<Markdown, string>
+  public markdowns: Dexie.Table<Markdown, number>
   constructor() {
     super("MarkdownDatabase")
 
@@ -25,8 +25,8 @@ export const db = new MarkdownDatabase()
 export default createContext<{
   create: (payload: Markdown) => void
   update: (Markdown) => void
-  remove: (id: number) => void
-  read: (id: number) => Promise<Markdown | undefined>
+  remove: (id: string) => void
+  read: (id: string) => Promise<Markdown | undefined>
   list: () => Promise<Markdown[]>
 }>({
   create: (...args) => console.log(...args),
