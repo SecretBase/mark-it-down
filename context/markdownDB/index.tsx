@@ -6,7 +6,7 @@ const { useCallback, useMemo } = React
 
 export const MarkdownDBProvider: React.FC = props => {
   const create = useCallback(async (payload: Markdown) => {
-    db.markdowns.add(payload)
+    return db.markdowns.add(payload)
   }, [])
 
   const update = useCallback(async (payload: Markdown) => {

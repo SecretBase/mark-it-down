@@ -13,7 +13,7 @@ const App: React.FC = () => {
         <Container fluid>
           <Row>
             <Col as="aside" md={3} width={300}>
-              <FileTree />
+              <Route component={FileTree} />
             </Col>
             <Col as="main">
               <Route path="/edit/:id" exact component={WorkSpace} />

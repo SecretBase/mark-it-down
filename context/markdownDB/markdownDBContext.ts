@@ -23,13 +23,16 @@ class MarkdownDatabase extends Dexie {
 export const db = new MarkdownDatabase()
 
 export default createContext<{
-  create: (payload: Markdown) => void
+  create: (payload: Markdown) => Promise<number>
   update: (Markdown) => void
   remove: (id: string) => void
   read: (id: string) => Promise<Markdown | undefined>
   list: () => Promise<Markdown[]>
 }>({
-  create: (...args) => console.log(...args),
+  create: async (...args) => {
+    console.log(...args)
+    return -1
+  },
   update: (...args) => console.log(...args),
   remove: (...args) => console.log(...args),
   read: async (...args) => {
