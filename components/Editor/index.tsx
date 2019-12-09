@@ -1,5 +1,4 @@
-import { h, FunctionComponent, Fragment } from "preact"
-import { memo } from "preact/compat"
+import * as React from "react"
 import { Form } from "react-bootstrap"
 
 interface Props {
@@ -9,14 +8,14 @@ interface Props {
   title: string
 }
 
-const Editor: FunctionComponent<Props> = ({
+const Editor: React.FC<Props> = ({
   onContentChange,
   content,
   onTitleChange,
   title
 }) => {
   return (
-    <Fragment>
+    <>
       <Form.Group>
         <Form.Label>Title</Form.Label>
         <Form.Control type="text" onChange={onTitleChange} value={title} />
@@ -30,8 +29,8 @@ const Editor: FunctionComponent<Props> = ({
           rows={30}
         />
       </Form.Group>
-    </Fragment>
+    </>
   )
 }
 
-export default memo(Editor)
+export default React.memo(Editor)

@@ -1,24 +1,18 @@
-import { h, FunctionComponent } from "preact"
-import {
-  lazy,
-  useState,
-  useCallback,
-  Suspense,
-  useContext,
-  useEffect
-} from "preact/compat"
+import * as React from "react"
+import loadable from "@loadable/component"
 import { Row, Col, Spinner } from "react-bootstrap"
+import { RouteComponentProps } from "react-router-dom"
 
 import { MarkdownDBContext } from "../../context/markdownDB"
 
-const Editor = lazy(() => import("../Editor"))
-const Preview = lazy(() => import("../Preview"))
+const { useState, useCallback, useContext, useEffect, Suspense } = React
 
-interface Props {
-  fileId: string
-}
+const Editor = loadable(() => import("../Editor"))
+const Preview = loadable(() => import("../Preview"))
 
-const WorkSpace: FunctionComponent<Props> = ({ fileId }) => {
+const WorkSpace: React.FC<RouteComponentProps<{ id: string }>> = ({
+  match
+}) => {
   const [content, setContent] = useState({
     title: "",
     markdown: ""
@@ -42,16 +36,16 @@ const WorkSpace: FunctionComponent<Props> = ({ fileId }) => {
 
   useEffect(() => {
     const run = async () => {
-      const result = await read(fileId)
+      const result = await read(match.params.id)
       if (result) {
         setContent(result)
       }
     }
     run()
-  }, [fileId, read])
+  }, [match.params.id, read])
 
   return (
-    <Row as="div" fluid>
+    <Row>
       <Col>
         <Suspense
           fallback={

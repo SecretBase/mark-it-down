@@ -1,8 +1,9 @@
-import { h, FunctionComponent } from "preact"
-import { useState, useEffect, memo } from "preact/compat"
+import * as React from "react"
+
 import { wrap } from "comlink"
 import { Spinner } from "react-bootstrap"
 
+const { useState, useEffect, memo } = React
 const worker = new Worker("./markdownParser.ts")
 const fns = wrap<{ parse: parseFn }>(worker)
 
@@ -30,7 +31,7 @@ const useMarkdown = (
   return { html, isLoading }
 }
 
-const Preview: FunctionComponent<Props> = ({ markdown }) => {
+const Preview: React.FC<Props> = ({ markdown }) => {
   const { html, isLoading } = useMarkdown(markdown)
   if (isLoading)
     return (

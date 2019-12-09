@@ -1,11 +1,12 @@
-import { FunctionComponent, h } from "preact"
-import { useContext, useState, useEffect } from "preact/compat"
+import * as React from "react"
 import { Link } from "react-router-dom"
 
 import { MarkdownDBContext } from "../../context/markdownDB"
 import { Markdown } from "../../context/markdownDB/markdownDBContext"
 
-const FileTree: FunctionComponent = () => {
+const { useContext, useState, useEffect } = React
+
+const FileTree: React.FC = () => {
   const [files, setFiles] = useState<Markdown[]>([])
   const { list } = useContext(MarkdownDBContext)
 
@@ -15,13 +16,17 @@ const FileTree: FunctionComponent = () => {
       setFiles(markdownList)
     }
     run()
-  })
+  }, [list])
 
   return (
     <nav>
       <ul>
         {files.map(file => {
-          return <Link to={`/edit/${file.id}`}>{file.title}</Link>
+          return (
+            <Link key={`${file.id}`} to={`/edit/${file.id}`}>
+              {file.title}
+            </Link>
+          )
         })}
       </ul>
     </nav>

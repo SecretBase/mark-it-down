@@ -7,7 +7,6 @@
     "strict": true,
     "target": "ES2016",
     "jsx": "react",
-    "jsxFactory": "h",
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true
   }

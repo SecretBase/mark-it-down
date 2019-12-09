@@ -1,8 +1,10 @@
-import { h, FunctionComponent } from "preact"
-import { useCallback, useMemo } from "preact/compat"
+import * as React from "react"
+
 import { default as Context, db, Markdown } from "./markdownDBContext"
 
-export const MarkdownDBProvider: FunctionComponent = props => {
+const { useCallback, useMemo } = React
+
+export const MarkdownDBProvider: React.FC = props => {
   const create = useCallback(async (payload: Markdown) => {
     db.markdowns.add(payload)
   }, [])
