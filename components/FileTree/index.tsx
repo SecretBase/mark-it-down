@@ -1,6 +1,8 @@
 import * as React from "react"
 import { Link, useHistory, useRouteMatch } from "react-router-dom"
 import { Button } from "react-bootstrap"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faTrash } from "@fortawesome/free-solid-svg-icons"
 import FilesStoreContext from "../../context/FilesStore/filesStoreContext"
 
 const { useContext } = React
@@ -39,18 +41,24 @@ const FileTree: React.FC = () => {
   )
 
   return (
-    <nav>
+    <nav className="vh-100">
       <Button type="button" onClick={onCreate}>
-        Create
+        Create Markdown
       </Button>
-      <ul>
+      <ul className="list-unstyled mt-3">
         {files.map(file => {
           const id = file.id as number
           return (
             <li key={`${file.id}`}>
               <Link to={`/edit/${file.id}`}>{file.title}</Link>
-              <Button type="button" variant="danger" onClick={onDelete(id)}>
-                Delete
+              <Button
+                type="button"
+                variant="link"
+                className="text-muted"
+                onClick={onDelete(id)}
+              >
+                <span className="sr-only">Delete</span>
+                <FontAwesomeIcon icon={faTrash} />
               </Button>
             </li>
           )

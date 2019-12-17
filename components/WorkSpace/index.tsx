@@ -1,6 +1,8 @@
 import * as React from "react"
 import loadable from "@loadable/component"
-import { Row, Col, Spinner } from "react-bootstrap"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faSave } from "@fortawesome/free-solid-svg-icons"
+import { Row, Col, Spinner, Button } from "react-bootstrap"
 import { RouteComponentProps } from "react-router-dom"
 
 import FilesStoreContext from "../../context/FilesStore/filesStoreContext"
@@ -18,7 +20,7 @@ const WorkSpace: React.FC<RouteComponentProps<{ id: string }>> = ({
     markdown: ""
   })
 
-  const { readFile } = useContext(FilesStoreContext)
+  const { readFile, updateFile } = useContext(FilesStoreContext)
 
   const onMarkdownChange = useCallback(
     e => {
@@ -32,6 +34,17 @@ const WorkSpace: React.FC<RouteComponentProps<{ id: string }>> = ({
       setContent({ ...content, title: e.target.value })
     },
     [content]
+  )
+
+  const onSave = useCallback(
+    e => {
+      e.preventDefault()
+      updateFile({
+        id: parseInt(match.params.id, 10),
+        ...content
+      })
+    },
+    [content, match.params.id, updateFile]
   )
 
   useEffect(() => {
@@ -54,6 +67,10 @@ const WorkSpace: React.FC<RouteComponentProps<{ id: string }>> = ({
             </Spinner>
           }
         >
+          <Button type="button" variant="primary" onClick={onSave}>
+            <span className="sr-only">Save</span>
+            <FontAwesomeIcon icon={faSave} />
+          </Button>
           <Editor
             onContentChange={onMarkdownChange}
             content={content.markdown}

@@ -43,6 +43,13 @@ const reducer = (
       return state.filter(({ id }) => action.payload !== id)
     case ActionTypes.create:
       return [...state, action.payload]
+    case ActionTypes.update:
+      return state.map(file => {
+        if (file.id === action.payload.id) {
+          return { ...file, ...action.payload }
+        }
+        return file
+      })
     default:
       return state
   }
