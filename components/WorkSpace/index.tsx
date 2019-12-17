@@ -3,7 +3,7 @@ import loadable from "@loadable/component"
 import { Row, Col, Spinner } from "react-bootstrap"
 import { RouteComponentProps } from "react-router-dom"
 
-import { MarkdownDBContext } from "../../context/markdownDB"
+import FilesStoreContext from "../../context/FilesStore/filesStoreContext"
 
 const { useState, useCallback, useContext, useEffect, Suspense } = React
 
@@ -18,7 +18,7 @@ const WorkSpace: React.FC<RouteComponentProps<{ id: string }>> = ({
     markdown: ""
   })
 
-  const { read } = useContext(MarkdownDBContext)
+  const { readFile } = useContext(FilesStoreContext)
 
   const onMarkdownChange = useCallback(
     e => {
@@ -36,13 +36,13 @@ const WorkSpace: React.FC<RouteComponentProps<{ id: string }>> = ({
 
   useEffect(() => {
     const run = async () => {
-      const result = await read(match.params.id)
+      const result = await readFile(parseInt(match.params.id, 10))
       if (result) {
         setContent(result)
       }
     }
     run()
-  }, [match.params.id, read])
+  }, [match.params.id, readFile])
 
   return (
     <Row>

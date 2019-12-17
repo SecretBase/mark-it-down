@@ -1,10 +1,9 @@
 import * as React from "react"
-
-import { default as Context, db, Markdown } from "./markdownDBContext"
-
+import { default as Context, db } from "./markdownDBContext"
+import { Markdown } from "../types/markdown"
 const { useCallback, useMemo } = React
 
-export const MarkdownDBProvider: React.FC = props => {
+const MarkdownDBProvider: React.FC = props => {
   const create = useCallback(async (payload: Markdown) => {
     return db.markdowns.add(payload)
   }, [])
@@ -13,12 +12,12 @@ export const MarkdownDBProvider: React.FC = props => {
     await db.markdowns.put(payload)
   }, [])
 
-  const remove = useCallback(async (id: string) => {
-    await db.markdowns.delete(parseInt(id, 10))
+  const remove = useCallback(async (id: number) => {
+    await db.markdowns.delete(id)
   }, [])
 
-  const read = useCallback((id: string) => {
-    return db.markdowns.get(parseInt(id, 10))
+  const read = useCallback((id: number) => {
+    return db.markdowns.get(id)
   }, [])
 
   const list = useCallback(async () => {
@@ -41,4 +40,4 @@ export const MarkdownDBProvider: React.FC = props => {
   return <Context.Provider value={value}>{props.children}</Context.Provider>
 }
 
-export const MarkdownDBContext = Context
+export default MarkdownDBProvider

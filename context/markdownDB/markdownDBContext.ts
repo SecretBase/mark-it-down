@@ -1,11 +1,7 @@
 import { createContext } from "react"
 import Dexie from "dexie"
 
-export interface Markdown {
-  id?: number
-  title: string
-  markdown: string
-}
+import { Markdown } from "../types/markdown"
 
 class MarkdownDatabase extends Dexie {
   public markdowns: Dexie.Table<Markdown, number>
@@ -25,8 +21,8 @@ export const db = new MarkdownDatabase()
 export default createContext<{
   create: (payload: Markdown) => Promise<number>
   update: (Markdown) => void
-  remove: (id: string) => void
-  read: (id: string) => Promise<Markdown | undefined>
+  remove: (id: number) => void
+  read: (id: number) => Promise<Markdown | undefined>
   list: () => Promise<Markdown[]>
 }>({
   create: async (...args) => {

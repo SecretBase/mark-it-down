@@ -1,89 +1,42 @@
 import * as React from "react"
-import { Link, RouteComponentProps } from "react-router-dom"
+import { Link, useHistory, useRouteMatch } from "react-router-dom"
 import { Button } from "react-bootstrap"
-import { MarkdownDBContext } from "../../context/markdownDB"
-import { Markdown } from "../../context/markdownDB/markdownDBContext"
+import FilesStoreContext from "../../context/FilesStore/filesStoreContext"
 
-const { useContext, useEffect, useReducer, useCallback } = React
+const { useContext } = React
 
-enum ActionTypes {
-  list = "LIST",
-  create = "CREATE"
-}
+const { useCallback, useMemo } = React
 
-interface ListAction {
-  type: typeof ActionTypes.list
-  payload: Markdown[]
-}
+const FileTree: React.FC = () => {
+  const { files, createFile, removeFile } = useContext(FilesStoreContext)
+  const history = useHistory()
 
-const reducer = (state: Markdown[], action: ListAction): Markdown[] => {
-  switch (action.type) {
-    case ActionTypes.list:
-      return action.payload
-    default:
-      return state
-  }
-}
+  const match = useRouteMatch<{ id?: string }>("/edit/:id")
 
-const useListFileTree = ({ dispatch, list }) => {
-  useEffect(() => {
-    const run = async () => {
-      const markdownList = await list()
-      dispatch({
-        type: ActionTypes.list,
-        payload: markdownList
-      })
-    }
+  const id = useMemo(() => match?.params.id && parseInt(match.params.id, 10), [
+    match
+  ])
 
-    run()
-  }, [dispatch, list])
-}
-
-const useCreateFile = ({ dispatch, create, list, history }) => {
   const onCreate = useCallback(
     async e => {
       e.preventDefault()
-      const id = await create({ title: "Un title", markdown: "" })
-      const markdownList = await list()
-      dispatch({
-        type: ActionTypes.list,
-        payload: markdownList
-      })
-
+      const id = await createFile()
       history.push(`/edit/${id}`)
     },
-    [create, dispatch, history, list]
+    [createFile, history]
   )
 
-  return onCreate
-}
-
-const useDeleteFile = ({ dispatch, list, history, remove }) => {
   const onDelete = useCallback(
-    (id: number) => async e => {
+    (removeId: number) => e => {
       e.preventDefault()
-      await remove(id)
-      const markdownList = await list()
-      dispatch({
-        type: ActionTypes.list,
-        payload: markdownList
-      })
+      removeFile(removeId)
 
-      history.push("/edit")
+      if (removeId === id) {
+        history.replace("/edit")
+      }
     },
-    [dispatch, history, list, remove]
+    [history, id, removeFile]
   )
-
-  return onDelete
-}
-
-const FileTree: React.FC<RouteComponentProps> = ({ history }) => {
-  const [store, dispatch] = useReducer(reducer, [])
-  const { create, list, remove } = useContext(MarkdownDBContext)
-
-  useListFileTree({ dispatch, list })
-  const onCreate = useCreateFile({ dispatch, create, list, history })
-  const onDelete = useDeleteFile({ dispatch, list, remove, history })
 
   return (
     <nav>
@@ -91,7 +44,7 @@ const FileTree: React.FC<RouteComponentProps> = ({ history }) => {
         Create
       </Button>
       <ul>
-        {store.map(file => {
+        {files.map(file => {
           const id = file.id as number
           return (
             <li key={`${file.id}`}>
