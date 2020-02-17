@@ -39,7 +39,8 @@
     "lint:ts": "eslint --ext .ts,.tsx .",
     "prebuild": "rm -rf dist",
     "build": "parcel build index.html",
-    "postbuild": "gzip-all dist/**/*.js"
+    "postbuild": "gzip-all dist/**/*.js",
+    "build:prod": "parcel build index.html --public-url /mark-it-down"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "1.2.27",
