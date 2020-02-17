@@ -40,7 +40,7 @@
     "prebuild": "rm -rf dist",
     "build": "parcel build index.html",
     "postbuild": "gzip-all dist/**/*.js",
-    "build:prod": "parcel build index.html --public-url /mark-it-down"
+    "build:prod": "parcel build index.html --public-url /mark-it-down --no-source-maps"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "1.2.27",
