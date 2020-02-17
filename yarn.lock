@@ -1815,10 +1815,10 @@ combined-stream@^1.0.6, combined-stream@~1.0.6:
   dependencies:
     delayed-stream "~1.0.0"
 
-comlink@4.1.0:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/comlink/-/comlink-4.1.0.tgz#900b7532cb8b40da6a4d3a087c8337275e310e5b"
-  integrity sha512-YU5KVol4zfJsCyl5F4ea2+EfIntsUaHdudxcC58H59gF7j6retT4C/EAY/zjReQKSFAOxjMYW2OeoL39EDsjBw==
+comlink@4.2.0:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/comlink/-/comlink-4.2.0.tgz#be9e968a19d797a44a042cf1eac03775d2ed39fe"
+  integrity sha512-33hF3yYzZicIWLREuvluTGSZkbAXYwRmrA9IYQo0/P+0O45qgvzR0FHX4tRZztObFMTs/RhnN0G0UBNDAZSiCg==
 
 command-exists@^1.2.6:
   version "1.2.8"
@@ -2631,10 +2631,10 @@ eslint-plugin-prettier@3.1.2:
   dependencies:
     prettier-linter-helpers "^1.0.0"
 
-eslint-plugin-react-hooks@1.7.0:
-  version "1.7.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-react-hooks/-/eslint-plugin-react-hooks-1.7.0.tgz#6210b6d5a37205f0b92858f895a4e827020a7d04"
-  integrity sha512-iXTCFcOmlWvw4+TOE8CLWj6yX1GwzT0Y6cUfHHZqWnSk144VmVIRcVGtUAzrLES7C798lmvnt02C7rxaOX1HNA==
+eslint-plugin-react-hooks@2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-react-hooks/-/eslint-plugin-react-hooks-2.3.0.tgz#53e073961f1f5ccf8dd19558036c1fac8c29d99a"
+  integrity sha512-gLKCa52G4ee7uXzdLiorca7JIQZPPXRAQDXV83J4bUEeUuc5pIEyZYAZ45Xnxe5IuupxEqHS+hUhSLIimK1EMw==
 
 eslint-plugin-react@7.18.3:
   version "7.18.3"
