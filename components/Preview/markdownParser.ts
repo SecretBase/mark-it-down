@@ -13,13 +13,13 @@ const md = new MarkdownIt({
     }
 
     return "" // use external default escaping
-  }
+  },
 })
 
 const fns = {
   parse: (markdown: string): string => {
     return md.render(markdown)
-  }
+  },
 }
 
 expose(fns)

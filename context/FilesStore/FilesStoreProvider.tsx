@@ -9,7 +9,7 @@ enum ActionTypes {
   list = "LIST",
   create = "CREATE",
   delete = "DELETE",
-  update = "UPDATE"
+  update = "UPDATE",
 }
 
 interface ListAction {
@@ -44,7 +44,7 @@ const reducer = (
     case ActionTypes.create:
       return [...state, action.payload]
     case ActionTypes.update:
-      return state.map(file => {
+      return state.map((file) => {
         if (file.id === action.payload.id) {
           return { ...file, ...action.payload }
         }
@@ -55,7 +55,7 @@ const reducer = (
   }
 }
 
-const FilesStoreProvider: React.FC = props => {
+const FilesStoreProvider: React.FC = (props) => {
   const [files, dispatch] = useReducer(reducer, [])
   const { create, list, remove, read, update } = useContext(MarkdownDBContext)
 
@@ -64,7 +64,7 @@ const FilesStoreProvider: React.FC = props => {
       const markdownList = await list()
       dispatch({
         type: ActionTypes.list,
-        payload: markdownList
+        payload: markdownList,
       })
     }
 
@@ -79,7 +79,7 @@ const FilesStoreProvider: React.FC = props => {
       if (markdown) {
         dispatch({
           type: ActionTypes.create,
-          payload: markdown
+          payload: markdown,
         })
       }
 
@@ -93,7 +93,7 @@ const FilesStoreProvider: React.FC = props => {
       await remove(id)
       dispatch({
         type: ActionTypes.delete,
-        payload: id
+        payload: id,
       })
     },
     [dispatch, remove]
@@ -106,7 +106,7 @@ const FilesStoreProvider: React.FC = props => {
       await update(markdown)
       dispatch({
         type: ActionTypes.update,
-        payload: markdown
+        payload: markdown,
       })
     },
     [update]

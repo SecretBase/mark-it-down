@@ -16,11 +16,11 @@ const FileTree: React.FC = () => {
   const match = useRouteMatch<{ id?: string }>("/edit/:id")
 
   const id = useMemo(() => match?.params.id && parseInt(match.params.id, 10), [
-    match
+    match,
   ])
 
   const onCreate = useCallback(
-    async e => {
+    async (e) => {
       e.preventDefault()
       const id = await createFile()
       history.push(`/edit/${id}`)
@@ -29,7 +29,7 @@ const FileTree: React.FC = () => {
   )
 
   const onDelete = useCallback(
-    (removeId: number) => e => {
+    (removeId: number) => (e) => {
       e.preventDefault()
       removeFile(removeId)
 
@@ -46,7 +46,7 @@ const FileTree: React.FC = () => {
         Create Markdown
       </Button>
       <ul className="list-unstyled mt-3">
-        {files.map(file => {
+        {files.map((file) => {
           const id = file.id as number
           return (
             <li key={`${file.id}`}>

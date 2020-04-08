@@ -14,15 +14,15 @@ export default createContext<{
     console.debug("createFile")
     return -1
   },
-  removeFile: async id => {
+  removeFile: async (id) => {
     console.debug("removeFile", id)
     return
   },
-  readFile: async id => {
+  readFile: async (id) => {
     console.debug("readFile", id)
     return
   },
-  updateFile: async markdown => {
+  updateFile: async (markdown) => {
     console.debug(markdown)
-  }
+  },
 })
