@@ -12,7 +12,7 @@ const Editor: React.FC<Props> = ({
   onContentChange,
   content,
   onTitleChange,
-  title
+  title,
 }) => {
   return (
     <>

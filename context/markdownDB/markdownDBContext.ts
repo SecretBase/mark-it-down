@@ -9,7 +9,7 @@ class MarkdownDatabase extends Dexie {
     super("MarkdownDatabase")
 
     this.version(1).stores({
-      markdowns: "++id, title, markdown"
+      markdowns: "++id, title, markdown",
     })
 
     this.markdowns = this.table("markdowns")
@@ -38,5 +38,5 @@ export default createContext<{
   list: async (...args) => {
     console.log(...args)
     return []
-  }
+  },
 })

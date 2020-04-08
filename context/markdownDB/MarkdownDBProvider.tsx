@@ -3,7 +3,7 @@ import { default as Context, db } from "./markdownDBContext"
 import { Markdown } from "../types/markdown"
 const { useCallback, useMemo } = React
 
-const MarkdownDBProvider: React.FC = props => {
+const MarkdownDBProvider: React.FC = (props) => {
   const create = useCallback(async (payload: Markdown) => {
     return db.markdowns.add(payload)
   }, [])
@@ -21,10 +21,7 @@ const MarkdownDBProvider: React.FC = props => {
   }, [])
 
   const list = useCallback(async () => {
-    return db.markdowns
-      .offset(0)
-      .limit(Infinity)
-      .toArray()
+    return db.markdowns.offset(0).limit(Infinity).toArray()
   }, [])
 
   const value = useMemo(
@@ -33,7 +30,7 @@ const MarkdownDBProvider: React.FC = props => {
       update,
       remove,
       read,
-      list
+      list,
     }),
     [create, list, read, remove, update]
   )

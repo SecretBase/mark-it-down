@@ -13,35 +13,35 @@ const Editor = loadable(() => import("../Editor"))
 const Preview = loadable(() => import("../Preview"))
 
 const WorkSpace: React.FC<RouteComponentProps<{ id: string }>> = ({
-  match
+  match,
 }) => {
   const [content, setContent] = useState({
     title: "",
-    markdown: ""
+    markdown: "",
   })
 
   const { readFile, updateFile } = useContext(FilesStoreContext)
 
   const onMarkdownChange = useCallback(
-    e => {
+    (e) => {
       setContent({ ...content, markdown: e.target.value })
     },
     [content]
   )
 
   const onTitleChange = useCallback(
-    e => {
+    (e) => {
       setContent({ ...content, title: e.target.value })
     },
     [content]
   )
 
   const onSave = useCallback(
-    e => {
+    (e) => {
       e.preventDefault()
       updateFile({
         id: parseInt(match.params.id, 10),
-        ...content
+        ...content,
       })
     },
     [content, match.params.id, updateFile]
