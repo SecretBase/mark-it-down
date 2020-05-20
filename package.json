@@ -48,7 +48,7 @@
     "comlink": "4.3.0",
     "dexie": "2.0.4",
     "highlight.js": "10.0.3",
-    "markdown-it": "10.0.0",
+    "markdown-it": "11.0.0",
     "react": "16.13.1",
     "react-bootstrap": "1.0.1",
     "react-dom": "16.13.1",
