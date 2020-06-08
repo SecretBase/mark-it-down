@@ -1,8 +1,11 @@
 import * as React from "react"
 import loadable from "@loadable/component"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faSave } from "@fortawesome/free-solid-svg-icons"
-import { Row, Col, Spinner, Button } from "react-bootstrap"
+import { faSave } from "@fortawesome/free-solid-svg-icons/faSave"
+import Button from "react-bootstrap/Button"
+import Spinner from "react-bootstrap/Spinner"
+import Col from "react-bootstrap/Col"
+import Row from "react-bootstrap/Row"
 import { RouteComponentProps } from "react-router-dom"
 
 import FilesStoreContext from "../../context/FilesStore/filesStoreContext"

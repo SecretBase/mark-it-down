@@ -1,8 +1,8 @@
 import * as React from "react"
 import { Link, useHistory, useRouteMatch } from "react-router-dom"
-import { Button } from "react-bootstrap"
+import Button from "react-bootstrap/Button"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faTrash } from "@fortawesome/free-solid-svg-icons"
+import { faTrash } from "@fortawesome/free-solid-svg-icons/faTrash"
 import FilesStoreContext from "../../context/FilesStore/filesStoreContext"
 
 const { useContext } = React

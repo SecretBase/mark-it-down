@@ -2,7 +2,7 @@ import "highlight.js/styles/github.css"
 import * as React from "react"
 
 import { wrap } from "comlink"
-import { Spinner } from "react-bootstrap"
+import Spinner from "react-bootstrap/Spinner"
 
 const { useState, useEffect, memo } = React
 const worker = new Worker("./markdownParser.ts")
@@ -21,7 +21,7 @@ const useMarkdown = (
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    const run = async (): Promise<void> => {
+    const run = async () => {
       const result = await fns.parse(markdown)
       setHtml(result)
       setIsLoading(false)
