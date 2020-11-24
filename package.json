@@ -47,7 +47,7 @@
     "bootstrap": "4.5.0",
     "comlink": "4.3.0",
     "dexie": "3.0.1",
-    "highlight.js": "10.1.1",
+    "highlight.js": "10.1.2",
     "markdown-it": "11.0.0",
     "react": "16.13.1",
     "react-bootstrap": "1.0.1",
